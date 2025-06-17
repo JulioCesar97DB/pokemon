@@ -5,7 +5,6 @@ import { MainLayout } from "../layouts/MainLayout";
 
 export const router = createBrowserRouter([
     {
-        path: "/",
         Component: Root,
         children: [
             {
