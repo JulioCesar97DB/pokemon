@@ -18,6 +18,25 @@ export const TeamsSidebar = () => {
       <nav className="flex-1 p-4">
         <div className="space-y-4">
           <NavLink
+            to="/teams/new"
+            className={({ isActive }) =>
+              `w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group ${
+                isActive
+                  ? "bg-green-600 text-white shadow-lg shadow-green-600/20"
+                  : "text-slate-300 hover:text-white hover:bg-green-700/30 hover:shadow-md"
+              }`
+            }
+          >
+            <span className="text-xl">✨</span>
+            <div className="flex-1">
+              <div className="font-medium">Nuevo Equipo</div>
+              <div className="text-xs opacity-70">Crear equipo</div>
+            </div>
+            <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
+              <span className="text-xs font-bold">+</span>
+            </div>
+          </NavLink>
+          <NavLink
             to="/teams"
             end
             className={({ isActive }) =>
@@ -49,26 +68,6 @@ export const TeamsSidebar = () => {
             <div className="flex-1">
               <div className="font-medium">Borradores</div>
               <div className="text-xs opacity-70">Equipos en progreso</div>
-            </div>
-          </NavLink>
-
-          <NavLink
-            to="/teams/new"
-            className={({ isActive }) =>
-              `w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group ${
-                isActive
-                  ? "bg-green-600 text-white shadow-lg shadow-green-600/20"
-                  : "text-slate-300 hover:text-white hover:bg-green-700/30 hover:shadow-md"
-              }`
-            }
-          >
-            <span className="text-xl">✨</span>
-            <div className="flex-1">
-              <div className="font-medium">Nuevo Equipo</div>
-              <div className="text-xs opacity-70">Crear equipo</div>
-            </div>
-            <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-              <span className="text-xs font-bold">+</span>
             </div>
           </NavLink>
         </div>

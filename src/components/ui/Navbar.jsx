@@ -22,7 +22,7 @@ export const Navbar = () => {
           <Link
             to="/teams"
             className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
-              pathname === "/teams"
+              pathname.includes("/teams")
                 ? "bg-blue-700 text-white"
                 : "hover:bg-blue-800 hover:text-blue-100"
             }`}
@@ -32,7 +32,7 @@ export const Navbar = () => {
           <Link
             to="/combat"
             className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
-              pathname === "/combat"
+              pathname.includes("/combat")
                 ? "bg-blue-700 text-white"
                 : "hover:bg-blue-800 hover:text-blue-100"
             }`}
