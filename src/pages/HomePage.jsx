@@ -1,7 +1,9 @@
-import React from 'react'
+import PokemonList from '../components/Home/PokemonList';
 
 export const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <>
+      <PokemonList />
+    </>
+  );
+};
