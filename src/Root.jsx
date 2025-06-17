@@ -1,5 +1,11 @@
+import { Outlet } from "react-router";
+
 function Root() {
-  return <div className="text-slate-900">pokemon</div>;
+  return (
+    <>
+     <Outlet />
+    </>
+  );
 }
 
 export default Root;
