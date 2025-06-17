@@ -23,14 +23,6 @@ export const useAutoSave = ({
   const autoSaveAsDraft = useCallback(() => {
     const { editMode, teamName, selectedPokemon, hasBeenSaved, setHasBeenSaved, createDraft } = valuesRef.current;
     
-    console.log('autoSaveAsDraft called:', { 
-      editMode, 
-      teamName: teamName.trim(), 
-      pokemonCount: selectedPokemon.length, 
-      hasBeenSaved, 
-      hasAutoSaved: hasAutoSaved.current 
-    });
-    
     if (!editMode && teamName.trim() && selectedPokemon.length > 0 && !hasBeenSaved && !hasAutoSaved.current) {
       try {
         createDraft(`${teamName.trim()} (Auto-guardado)`, selectedPokemon);
