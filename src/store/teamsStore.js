@@ -92,9 +92,65 @@ export const useTeamsStore = create(
                 }
               : team
           )
-        }));
+        }));        return true;
+      },
 
-        return true;
+      updateTeam: (teamId, name, pokemon = []) => {
+        const team = get().teams.find(t => t.id === teamId);
+        if (!team) return false;
+
+        set((state) => ({
+          teams: state.teams.map((team) =>
+            team.id === teamId
+              ? { ...team, name, pokemon }
+              : team
+          )
+        }));        return true;
+      },
+
+      updateDraft: (draftId, name, pokemon = []) => {
+        const draft = get().drafts.find(d => d.id === draftId);
+        if (!draft) return false;
+
+        set((state) => ({
+          drafts: state.drafts.map((draft) =>
+            draft.id === draftId
+              ? { ...draft, name, pokemon }
+              : draft
+          )
+        }));        return true;
+      },
+
+      deleteTeam: (teamId) => {
+        set((state) => ({
+          teams: state.teams.filter(team => team.id !== teamId)        }));
+      },
+
+      deleteDraft: (draftId) => {
+        set((state) => ({
+          drafts: state.drafts.filter(draft => draft.id !== draftId)        }));
+      },
+
+      promoteDraftToTeam: (draftId) => {
+        const draft = get().drafts.find(d => d.id === draftId);
+        if (!draft) return false;
+
+        const newTeam = {
+          id: Date.now().toString(),
+          name: draft.name,
+          pokemon: draft.pokemon,
+          wins: 0,
+          losses: 0
+        };
+
+        set((state) => ({
+          teams: [...state.teams, newTeam],
+          drafts: state.drafts.filter(d => d.id !== draftId)
+        }));        return newTeam;
+      },
+
+      getDraftById: (draftId) => {
+        return get().drafts.find(draft => draft.id === draftId);
       }
     }),
     {

@@ -10,6 +10,8 @@ const TeamBuilder = ({
   removePokemonFromTeam,
   saveAsTeam,
   saveAsDraft,
+  editMode = false,
+  isEditingTeam = false,
 }) => {
   return (
     <div className="bg-slate-800 rounded-xl p-6 mb-8 border border-slate-700">
@@ -87,23 +89,27 @@ const TeamBuilder = ({
                 Haz clic en "Agregar" en cualquier Pokémon de abajo
               </p>
             </div>
-          )}
-
-          {selectedPokemon.length > 0 && (
+          )}          {selectedPokemon.length > 0 && (
             <div className="flex gap-4 justify-center">
-              <button
-                onClick={saveAsDraft}
-                className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center gap-2"
-              >
-                <span>📝</span>
-                Guardar como Borrador
-              </button>
+              {!editMode || !isEditingTeam ? (
+                <button
+                  onClick={saveAsDraft}
+                  className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center gap-2"
+                >
+                  <span>📝</span>
+                  {editMode ? 'Actualizar Borrador' : 'Guardar como Borrador'}
+                </button>
+              ) : null}
+              
               <button
                 onClick={saveAsTeam}
                 className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
               >
                 <span>⚔️</span>
-                Crear Equipo
+                {editMode 
+                  ? (isEditingTeam ? 'Actualizar Equipo' : 'Promover a Equipo')
+                  : 'Crear Equipo'
+                }
               </button>
             </div>
           )}
