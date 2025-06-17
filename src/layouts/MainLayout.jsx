@@ -4,7 +4,7 @@ import { Navbar } from "../components/Navbar";
 
 export const MainLayout = () => {
   return (
-    <div>
+    <div className="h-screen">
       <Navbar />
       <Outlet />
     </div>
