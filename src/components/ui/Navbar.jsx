@@ -11,7 +11,7 @@ export const Navbar = () => {
         <div className="flex space-x-10">
           <Link
             to="/"
-            className={`flex items-center px-6 py-2 rounded-full transition-all duration-200 ${
+            className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
               pathname === "/"
                 ? "bg-blue-700 text-white"
                 : "hover:bg-blue-800 hover:text-blue-100"
@@ -21,7 +21,7 @@ export const Navbar = () => {
           </Link>
           <Link
             to="/teams"
-            className={`flex items-center px-6 py-2 rounded-full transition-all duration-200 ${
+            className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
               pathname === "/teams"
                 ? "bg-blue-700 text-white"
                 : "hover:bg-blue-800 hover:text-blue-100"
@@ -31,7 +31,7 @@ export const Navbar = () => {
           </Link>
           <Link
             to="/combat"
-            className={`flex items-center px-6 py-2 rounded-full transition-all duration-200 ${
+            className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
               pathname === "/combat"
                 ? "bg-blue-700 text-white"
                 : "hover:bg-blue-800 hover:text-blue-100"

@@ -1,6 +1,8 @@
 import { NavLink } from "react-router";
+import { useTeamsStore } from "../../store/teamsStore";
 
 export const TeamsSidebar = () => {
+  const { teams, drafts } = useTeamsStore();
   return (
     <div className="w-64 bg-slate-800 border-r border-slate-700 flex flex-col">
       <div className="p-6 border-b border-slate-700/50">
@@ -70,21 +72,21 @@ export const TeamsSidebar = () => {
             </div>
           </NavLink>
         </div>
-
-        <div className="my-6 border-t border-slate-700/50"></div>
-
+        <div className="my-6 border-t border-slate-700/50"></div>{" "}
         <div className="bg-slate-900/50 rounded-xl p-4 border border-slate-700/30">
           <div className="text-sm font-medium text-slate-300 mb-2">
             Estadísticas
-          </div>
+          </div>{" "}
           <div className="space-y-2 text-xs text-slate-400">
             <div className="flex justify-between">
               <span>Equipos:</span>
-              <span className="text-blue-400 font-medium">0</span>
+              <span className="text-blue-400 font-medium">{teams.length}</span>
             </div>
             <div className="flex justify-between">
               <span>Borradores:</span>
-              <span className="text-orange-400 font-medium">0</span>
+              <span className="text-orange-400 font-medium">
+                {drafts.length}
+              </span>
             </div>
           </div>
         </div>
