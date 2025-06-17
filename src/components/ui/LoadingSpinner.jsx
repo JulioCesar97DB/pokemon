@@ -1,18 +1,10 @@
-const LoadingSpinner = ({ size = 'medium', text = 'Cargando...' }) => {
-  const sizeClasses = {
-    small: 'h-4 w-4',
-    medium: 'h-8 w-8',
-    large: 'h-16 w-16'
-  };
-
+export const LoadingSpinner = () => {
   return (
-    <div className="flex flex-col items-center justify-center p-8">
-      <div className={`animate-spin rounded-full border-b-2 border-blue-500 ${sizeClasses[size]}`}></div>
-      {text && (
-        <p className="mt-4 text-gray-600 text-center">{text}</p>
-      )}
+    <div className="flex items-center justify-center h-full">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-400 mx-auto mb-4"></div>
+        <p className="text-slate-300">Cargando...</p>
+      </div>
     </div>
   );
 };
-
-export default LoadingSpinner;
