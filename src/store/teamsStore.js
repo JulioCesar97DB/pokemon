@@ -108,6 +108,21 @@ export const useTeamsStore = create(
         }));        return true;
       },
 
+      updateTeamPokemonOrder: (teamId, newPokemonOrder) => {
+        const team = get().teams.find(t => t.id === teamId);
+        if (!team) return false;
+
+        set((state) => ({
+          teams: state.teams.map((team) =>
+            team.id === teamId
+              ? { ...team, pokemon: newPokemonOrder }
+              : team
+          )
+        }));
+
+        return true;
+      },
+
       updateDraft: (draftId, name, pokemon = []) => {
         const draft = get().drafts.find(d => d.id === draftId);
         if (!draft) return false;

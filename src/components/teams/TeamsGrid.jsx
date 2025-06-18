@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import PokemonTypeBadge from "../commons/PokemonTypeBadge";
 import { useCustomAlerts } from "../ui/CustomAlert";
+import TeamPokemonList from "./TeamPokemonList";
 
-const TeamsGrid = ({ teams, onDelete }) => {
+const TeamsGrid = ({ teams, onDelete, onUpdatePokemonOrder }) => {
   const navigate = useNavigate();
   const { showConfirm, showSuccess, showError } = useCustomAlerts();
 
   const handleDelete = (team) => {
     const confirmMessage = `¿Estás seguro de que quieres eliminar el equipo "${team.name}"?`;
-    
+
     showConfirm(
       confirmMessage,
       () => {
@@ -25,6 +25,16 @@ const TeamsGrid = ({ teams, onDelete }) => {
         description: "Esta acción no se puede deshacer",
       }
     );
+  };
+
+  const handlePokemonReorder = (teamId, newOrder) => {
+    try {
+      onUpdatePokemonOrder(teamId, newOrder);
+      showSuccess("Orden de Pokémon actualizado");
+    } catch (error) {
+      console.error("Error al actualizar el orden:", error);
+      showError("Error al actualizar el orden");
+    }
   };
 
   if (teams.length === 0) {
@@ -94,8 +104,6 @@ const TeamsGrid = ({ teams, onDelete }) => {
                 </button>
               </div>
             </div>
-
-            {/* Estadísticas de victorias y derrotas */}
             <div className="flex gap-4 mb-6 p-4 bg-slate-700/50 rounded-lg">
               <div className="text-center flex-1">
                 <div className="text-xl font-bold text-green-400">
@@ -112,63 +120,18 @@ const TeamsGrid = ({ teams, onDelete }) => {
               <div className="text-center flex-1">
                 <div className="text-xl font-bold text-slate-300">
                   {team.wins + team.losses > 0
-                    ? ((team.wins / (team.wins + team.losses)) * 100).toFixed(0) + "%"
+                    ? ((team.wins / (team.wins + team.losses)) * 100).toFixed(
+                        0
+                      ) + "%"
                     : "0%"}
                 </div>
                 <div className="text-xs text-slate-400 mt-1">Ratio</div>
               </div>
             </div>
-
-            {/* Lista de Pokémon */}
-            {team.pokemon.length > 0 ? (
-              <div className="space-y-4">
-                <div className="text-sm font-medium text-slate-300">
-                  Pokémon:
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {team.pokemon.map((pokemon) => (
-                    <div
-                      key={pokemon.id}
-                      className="flex items-center gap-3 p-3 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-colors"
-                    >
-                      <img
-                        src={pokemon.image}
-                        alt={pokemon.name}
-                        className="w-10 h-10 object-contain flex-shrink-0"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium text-slate-100 capitalize truncate mb-1">
-                          {pokemon.name}
-                        </div>
-                        <div className="flex gap-1 flex-wrap">
-                          {pokemon.types.slice(0, 2).map((type, index) => (
-                            <PokemonTypeBadge
-                              key={index}
-                              type={type}
-                              size="small"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {team.pokemon.length < 6 && (
-                  <div className="text-xs text-slate-500 text-center mt-2">
-                    {6 - team.pokemon.length} slot(s) disponible(s)
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="text-center py-6 text-slate-400">
-                <div className="text-2xl mb-2">👥</div>
-                <p className="text-sm">Sin Pokémon</p>
-                <p className="text-xs">Agrega Pokémon a tu equipo</p>
-              </div>
-            )}
-
-            {/* Botón de acción */}
+            <TeamPokemonList
+              pokemon={team.pokemon}
+              onReorder={(newOrder) => handlePokemonReorder(team.id, newOrder)}
+            />
             <div className="mt-6 pt-4 border-t border-slate-700">
               <div className="flex gap-3">
                 <button

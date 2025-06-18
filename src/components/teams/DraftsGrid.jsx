@@ -142,7 +142,6 @@ const DraftsGrid = ({ drafts, onDelete, onPromote }) => {
               </div>
             </div>
 
-            {/* Lista de Pokémon */}
             {draft.pokemon.length > 0 ? (
               <div className="space-y-4">
                 <div className="text-sm font-medium text-slate-300">
@@ -191,7 +190,6 @@ const DraftsGrid = ({ drafts, onDelete, onPromote }) => {
               </div>
             )}
 
-            {/* Botones de acción */}
             <div className="mt-6 pt-4 border-t border-slate-700">
               <div className="flex gap-3">
                 <button
