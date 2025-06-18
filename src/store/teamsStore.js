@@ -35,41 +35,35 @@ export const useTeamsStore = create(
         }));
 
         return newDraft;
-      },
-
-      addPokemon: (id, pokemon, isTeam = true) => {
-        const collection = isTeam ? get().teams : get().drafts;
-        const item = collection.find(item => item.id === id);
+      },      addPokemonToDraft: (draftId, pokemon) => {
+        const draft = get().drafts.find(draft => draft.id === draftId);
         
-        if (!item) return false;
+        if (!draft) return false;
 
-        if (item.pokemon.length >= 6) {
-          throw new Error(`Un ${isTeam ? 'equipo' : 'borrador'} no puede tener más de 6 Pokémon`);
+        if (draft.pokemon.length >= 6) {
+          throw new Error('Un borrador no puede tener más de 6 Pokémon');
         }
 
-        if (item.pokemon.some(p => p.id === pokemon.id)) {
-          throw new Error('Este Pokémon ya está en el equipo/borrador');
+        if (draft.pokemon.some(p => p.id === pokemon.id)) {
+          throw new Error('Este Pokémon ya está en el borrador');
         }
-
-        const stateKey = isTeam ? 'teams' : 'drafts';
         
         set((state) => ({
-          [stateKey]: state[stateKey].map((item) =>
-            item.id === id
-              ? { ...item, pokemon: [...item.pokemon, pokemon] }
-              : item
+          drafts: state.drafts.map((draft) =>
+            draft.id === draftId
+              ? { ...draft, pokemon: [...draft.pokemon, pokemon] }
+              : draft
           )
         }));
 
         return true;
-      },      removePokemon: (id, pokemonId, isTeam = true) => {
-        const stateKey = isTeam ? 'teams' : 'drafts';
-        
+      },
+        removePokemonFromDraft: (draftId, pokemonId) => {
         set((state) => ({
-          [stateKey]: state[stateKey].map((item) =>
-            item.id === id
-              ? { ...item, pokemon: item.pokemon.filter(p => p.id !== pokemonId) }
-              : item
+          drafts: state.drafts.map((draft) =>
+            draft.id === draftId
+              ? { ...draft, pokemon: draft.pokemon.filter(p => p.id !== pokemonId) }
+              : draft
           )
         }));
       },

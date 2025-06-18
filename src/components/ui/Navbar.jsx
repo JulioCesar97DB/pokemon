@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
@@ -7,8 +6,10 @@ export const Navbar = () => {
   return (
     <nav className="absolute w-full bg-blue-900">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="text-xl font-bold">Pokemon Combat</div>
-        <div className="flex space-x-10">
+        <div className="flex items-center gap-3 text-xl font-bold">
+          <img src="/pokemon.svg" alt="pokeball" /> Pokemon Combat
+        </div>
+        <div className="flex space-x-1 md:space-x-10">
           <Link
             to="/"
             className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
