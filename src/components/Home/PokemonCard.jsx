@@ -1,10 +1,9 @@
-import React from "react";
 import PokemonTypeBadge from "../commons/PokemonTypeBadge";
+import { StatBar } from "./StatBar";
 
 const PokemonCard = ({ pokemon }) => {
-  const formatNumber = (number) => {
-    return `#${number.toString().padStart(3, "0")}`;
-  };
+  const formatNumber = (number) => `#${number.toString().padStart(3, "0")}`;
+
   return (
     <div className="bg-slate-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-slate-700">
       <div className="bg-slate-700 px-4 py-2">
@@ -36,60 +35,19 @@ const PokemonCard = ({ pokemon }) => {
           {pokemon.types.map((type, index) => (
             <PokemonTypeBadge key={index} type={type} />
           ))}
-        </div>
+        </div>{" "}
         <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium text-slate-300">Ataque:</span>
-            <div className="flex items-center gap-2">
-              <div className="w-16 bg-slate-600 rounded-full h-2">
-                <div
-                  className="bg-red-500 h-2 rounded-full"
-                  style={{
-                    width: `${Math.min((pokemon.attack / 150) * 100, 100)}%`,
-                  }}
-                ></div>
-              </div>
-              <span className="text-sm font-semibold text-slate-100">
-                {pokemon.attack}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium text-slate-300">Defensa:</span>
-            <div className="flex items-center gap-2">
-              <div className="w-16 bg-slate-600 rounded-full h-2">
-                <div
-                  className="bg-blue-500 h-2 rounded-full"
-                  style={{
-                    width: `${Math.min((pokemon.defense / 150) * 100, 100)}%`,
-                  }}
-                ></div>
-              </div>
-              <span className="text-sm font-semibold text-slate-100">
-                {pokemon.defense}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium text-slate-300">
-              Velocidad:
-            </span>
-            <div className="flex items-center gap-2">
-              <div className="w-16 bg-slate-600 rounded-full h-2">
-                <div
-                  className="bg-green-500 h-2 rounded-full"
-                  style={{
-                    width: `${Math.min((pokemon.speed / 150) * 100, 100)}%`,
-                  }}
-                ></div>
-              </div>
-              <span className="text-sm font-semibold text-slate-100">
-                {pokemon.speed}
-              </span>
-            </div>
-          </div>
+          <StatBar label="Ataque" value={pokemon.attack} color="bg-red-500" />
+          <StatBar
+            label="Defensa"
+            value={pokemon.defense}
+            color="bg-blue-500"
+          />
+          <StatBar
+            label="Velocidad"
+            value={pokemon.speed}
+            color="bg-green-500"
+          />
         </div>
       </div>
     </div>
