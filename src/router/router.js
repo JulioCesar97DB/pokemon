@@ -4,7 +4,7 @@ import { MainLayout } from "../layouts/MainLayout";
 import { HomePage } from "../pages/HomePage";
 import { TeamsPage } from "../pages/Teams/TeamsPage";
 import { TeamsLayout } from "../layouts/TeamsLayout";
-import { CombatPage } from "../pages/CombatPage";
+import { CombatPage } from "../pages/Combat/CombatPage";
 import { DraftsPage } from "../pages/Teams/DraftsPage";
 import { NewTeam } from "../pages/Teams/NewTeam";
 
