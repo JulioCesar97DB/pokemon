@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import PokemonTypeBadge from "../commons/PokemonTypeBadge";
+import { useCustomAlerts } from "../ui/CustomAlert";
 
 const TeamGrid = ({
   items,
@@ -10,6 +11,7 @@ const TeamGrid = ({
   showWinLoss = false,
 }) => {
   const navigate = useNavigate();
+  const { showConfirm, showSuccess, showError } = useCustomAlerts();
 
   const handleEdit = (item) => {
     if (!showWinLoss) {
@@ -22,21 +24,46 @@ const TeamGrid = ({
       });
     }
   };
-
   const handlePromote = (item) => {
     const confirmMessage = `¿Quieres promover el borrador "${item.name}" a equipo? Esto lo moverá a tus equipos activos.`;
-    if (window.confirm(confirmMessage)) {
-      onPromote(item.id);
-    }
+    
+    showConfirm(
+      confirmMessage,
+      () => {
+        try {
+          onPromote(item.id);
+          showSuccess(`¡Borrador "${item.name}" promovido a equipo exitosamente!`);        } catch (error) {
+          console.error("Error al promover el borrador:", error);
+          showError("Error al promover el borrador");
+        }
+      },
+      null,
+      {
+        description: "Esta acción no se puede deshacer",
+      }
+    );
   };
-
   const handleDelete = (item) => {
     const confirmMessage = `¿Estás seguro de que quieres eliminar ${
       showWinLoss ? "el equipo" : "el borrador"
     } "${item.name}"?`;
-    if (window.confirm(confirmMessage)) {
-      onDelete(item.id);
-    }
+    
+    showConfirm(
+      confirmMessage,
+      () => {
+        try {
+          onDelete(item.id);
+          showSuccess(`${showWinLoss ? "Equipo" : "Borrador"} "${item.name}" eliminado exitosamente`);
+        } catch (error) {
+          console.error("Error al eliminar:", error);
+          showError("Error al eliminar");
+        }
+      },
+      null,
+      {
+        description: "Esta acción no se puede deshacer",
+      }
+    );
   };
 
   if (items.length === 0) {
