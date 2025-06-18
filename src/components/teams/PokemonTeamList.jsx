@@ -1,4 +1,3 @@
-import React from "react";
 import PokemonCard from "../Home/PokemonCard";
 import Pagination from "../commons/Pagination";
 import { LoadingSpinner } from "../ui/LoadingSpinner";

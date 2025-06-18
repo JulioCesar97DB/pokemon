@@ -1,4 +1,3 @@
-import React from "react";
 import PokemonTypeBadge from "../commons/PokemonTypeBadge";
 
 const TeamBuilder = ({
