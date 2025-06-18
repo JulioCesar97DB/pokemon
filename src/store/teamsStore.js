@@ -33,32 +33,10 @@ export const useTeamsStore = create(
         set((state) => ({
           drafts: [...state.drafts, newDraft]
         }));
-
         return newDraft;
-      },      addPokemonToDraft: (draftId, pokemon) => {
-        const draft = get().drafts.find(draft => draft.id === draftId);
-        
-        if (!draft) return false;
-
-        if (draft.pokemon.length >= 6) {
-          throw new Error('Un borrador no puede tener más de 6 Pokémon');
-        }
-
-        if (draft.pokemon.some(p => p.id === pokemon.id)) {
-          throw new Error('Este Pokémon ya está en el borrador');
-        }
-        
-        set((state) => ({
-          drafts: state.drafts.map((draft) =>
-            draft.id === draftId
-              ? { ...draft, pokemon: [...draft.pokemon, pokemon] }
-              : draft
-          )
-        }));
-
-        return true;
       },
-        removePokemonFromDraft: (draftId, pokemonId) => {
+
+      removePokemonFromDraft: (draftId, pokemonId) => {
         set((state) => ({
           drafts: state.drafts.map((draft) =>
             draft.id === draftId
@@ -80,13 +58,14 @@ export const useTeamsStore = create(
           teams: state.teams.map((team) =>
             team.id === teamId
               ? {
-                  ...team,
-                  wins: result === 'win' ? team.wins + 1 : team.wins,
-                  losses: result === 'lose' ? team.losses + 1 : team.losses
-                }
+                ...team,
+                wins: result === 'win' ? team.wins + 1 : team.wins,
+                losses: result === 'lose' ? team.losses + 1 : team.losses
+              }
               : team
           )
-        }));        return true;
+        }));
+        return true;
       },
 
       updateTeam: (teamId, name, pokemon = []) => {
@@ -99,7 +78,8 @@ export const useTeamsStore = create(
               ? { ...team, name, pokemon }
               : team
           )
-        }));        return true;
+        }));
+        return true;
       },
 
       updateTeamPokemonOrder: (teamId, newPokemonOrder) => {
@@ -127,17 +107,20 @@ export const useTeamsStore = create(
               ? { ...draft, name, pokemon }
               : draft
           )
-        }));        return true;
+        }));
+        return true;
       },
 
       deleteTeam: (teamId) => {
         set((state) => ({
-          teams: state.teams.filter(team => team.id !== teamId)        }));
+          teams: state.teams.filter(team => team.id !== teamId)
+        }));
       },
 
       deleteDraft: (draftId) => {
         set((state) => ({
-          drafts: state.drafts.filter(draft => draft.id !== draftId)        }));
+          drafts: state.drafts.filter(draft => draft.id !== draftId)
+        }));
       },
 
       promoteDraftToTeam: (draftId) => {
@@ -155,11 +138,8 @@ export const useTeamsStore = create(
         set((state) => ({
           teams: [...state.teams, newTeam],
           drafts: state.drafts.filter(d => d.id !== draftId)
-        }));        return newTeam;
-      },
-
-      getDraftById: (draftId) => {
-        return get().drafts.find(draft => draft.id === draftId);
+        }));
+        return newTeam;
       }
     }),
     {

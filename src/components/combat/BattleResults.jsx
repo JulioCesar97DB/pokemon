@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PokemonTypeBadge from "../commons/PokemonTypeBadge";
 
 const BattleResults = ({ results, onStartNewBattle, onReset }) => {

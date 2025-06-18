@@ -174,28 +174,3 @@ export const getBattleResultMessage = (battleResults) => {
 
     return "Batalla completada";
 };
-
-export const calculateBattleStats = (battleResults) => {
-    const { team1, team2, team1Wins, team2Wins, rounds } = battleResults;
-
-    const team1WinRate = team1.pokemon.length > 0
-        ? (team1Wins / team1.pokemon.length) * 100
-        : 0;
-
-    const team2WinRate = team2.pokemon.length > 0
-        ? (team2Wins / team2.pokemon.length) * 100
-        : 0;
-
-    const totalRounds = rounds.length;
-    const decisiveRounds = rounds.filter(round =>
-        round.pokemon1 && round.pokemon2
-    ).length;
-
-    return {
-        team1WinRate: Math.round(team1WinRate),
-        team2WinRate: Math.round(team2WinRate),
-        totalRounds,
-        decisiveRounds,
-        defaultWins: totalRounds - decisiveRounds,
-    };
-};
