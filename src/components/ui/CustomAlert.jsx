@@ -1,44 +1,23 @@
 import { toast } from "sonner";
 
-export const showSuccessAlert = (message, options = {}) => {
-  return toast.success(message, {
-    duration: 4000,
-    position: "top-right",
-    ...options,
-  });
+const baseConfig = {
+  position: "top-right",
 };
 
-export const showErrorAlert = (message, options = {}) => {
-  return toast.error(message, {
-    duration: 6000,
-    position: "top-right",
-    ...options,
-  });
-};
+export const showSuccessAlert = (message, options = {}) =>
+  toast.success(message, { duration: 4000, ...baseConfig, ...options });
 
-export const showWarningAlert = (message, options = {}) => {
-  return toast.warning(message, {
-    duration: 5000,
-    position: "top-right",
-    ...options,
-  });
-};
+export const showErrorAlert = (message, options = {}) =>
+  toast.error(message, { duration: 6000, ...baseConfig, ...options });
 
-export const showInfoAlert = (message, options = {}) => {
-  return toast.info(message, {
-    duration: 4000,
-    position: "top-right",
-    ...options,
-  });
-};
+export const showWarningAlert = (message, options = {}) =>
+  toast.warning(message, { duration: 5000, ...baseConfig, ...options });
 
-export const showCustomAlert = (message, options = {}) => {
-  return toast(message, {
-    duration: 4000,
-    position: "top-right",
-    ...options,
-  });
-};
+export const showInfoAlert = (message, options = {}) =>
+  toast.info(message, { duration: 4000, ...baseConfig, ...options });
+
+export const showCustomAlert = (message, options = {}) =>
+  toast(message, { duration: 4000, ...baseConfig, ...options });
 
 export const showConfirmAlert = (
   message,
@@ -48,7 +27,7 @@ export const showConfirmAlert = (
 ) => {
   return toast(message, {
     duration: Infinity,
-    position: "top-right",
+    ...baseConfig,
     action: {
       label: "Confirmar",
       onClick: () => {
@@ -72,35 +51,20 @@ export const showLoadingAlert = (message, promise, options = {}) => {
     loading: message || "Cargando...",
     success: options.successMessage || "¡Completado!",
     error: options.errorMessage || "Error al procesar",
-    position: "top-right",
+    ...baseConfig,
     ...options,
   });
 };
 
-export const clearAllAlerts = () => {
-  toast.dismiss();
-};
+export const clearAllAlerts = () => toast.dismiss();
 
-export const useCustomAlerts = () => {
-  const showSuccess = (message, options) => showSuccessAlert(message, options);
-  const showError = (message, options) => showErrorAlert(message, options);
-  const showWarning = (message, options) => showWarningAlert(message, options);
-  const showInfo = (message, options) => showInfoAlert(message, options);
-  const showCustom = (message, options) => showCustomAlert(message, options);
-  const showConfirm = (message, onConfirm, onCancel, options) =>
-    showConfirmAlert(message, onConfirm, onCancel, options);
-  const showLoading = (message, promise, options) =>
-    showLoadingAlert(message, promise, options);
-  const clearAll = () => clearAllAlerts();
-
-  return {
-    showSuccess,
-    showError,
-    showWarning,
-    showInfo,
-    showCustom,
-    showConfirm,
-    showLoading,
-    clearAll,
-  };
-};
+export const useCustomAlerts = () => ({
+  showSuccess: showSuccessAlert,
+  showError: showErrorAlert,
+  showWarning: showWarningAlert,
+  showInfo: showInfoAlert,
+  showCustom: showCustomAlert,
+  showConfirm: showConfirmAlert,
+  showLoading: showLoadingAlert,
+  clearAll: clearAllAlerts,
+});
