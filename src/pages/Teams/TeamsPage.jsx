@@ -1,16 +1,13 @@
 import { useTeamsStore } from '../../store/teamsStore';
-import TeamGrid from '../../components/teams/TeamGrid';
+import TeamsGrid from '../../components/teams/TeamsGrid';
 
 export const TeamsPage = () => {
   const { teams, deleteTeam } = useTeamsStore();
 
   return (
-    <TeamGrid
-      items={teams}
-      title="Mis Equipos"
-      emptyMessage="No tienes equipos creados"
+    <TeamsGrid
+      teams={teams}
       onDelete={deleteTeam}
-      showWinLoss={true}
     />
   );
 };

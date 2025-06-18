@@ -1,17 +1,14 @@
 import { useTeamsStore } from '../../store/teamsStore';
-import TeamGrid from '../../components/teams/TeamGrid';
+import DraftsGrid from '../../components/teams/DraftsGrid';
 
 export const DraftsPage = () => {
   const { drafts, deleteDraft, promoteDraftToTeam } = useTeamsStore();
 
   return (
-    <TeamGrid
-      items={drafts}
-      title="Mis Borradores"
-      emptyMessage="No tienes borradores guardados"
+    <DraftsGrid
+      drafts={drafts}
       onDelete={deleteDraft}
       onPromote={promoteDraftToTeam}
-      showWinLoss={false}
     />
   );
 };
