@@ -1,3 +1,5 @@
+import { TeamCard } from "./TeamCard";
+
 const TeamSelector = ({
   teams,
   selectedTeam1,
@@ -35,55 +37,17 @@ const TeamSelector = ({
           <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
             <span className="text-blue-400">🔵</span>
             Equipo 1
-          </h2>
+          </h2>{" "}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {availableTeams.map((team) => (
-              <div
+              <TeamCard
                 key={team.id}
-                onClick={() => onSelectTeam1(team)}
-                className={`p-4 rounded-lg cursor-pointer transition-all duration-200 ${
-                  selectedTeam1?.id === team.id
-                    ? "bg-blue-600/30 border-2 border-blue-500"
-                    : selectedTeam2?.id === team.id
-                    ? "bg-slate-700/50 border border-slate-600 opacity-50 cursor-not-allowed"
-                    : "bg-slate-700/50 border border-slate-600 hover:bg-slate-700 hover:border-slate-500"
-                }`}
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-bold text-slate-100">{team.name}</h3>
-                  <span className="text-sm text-slate-400">
-                    {team.pokemon.length}/6
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-3 gap-2 mb-3">
-                  {team.pokemon.slice(0, 6).map((pokemon, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                      <img
-                        src={pokemon.image}
-                        alt={pokemon.name}
-                        className="w-8 h-8 object-contain mb-1"
-                      />
-                      <span className="text-xs text-slate-300 capitalize truncate w-full text-center">
-                        {pokemon.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex justify-between text-xs text-slate-400">
-                  <span>V: {team.wins}</span>
-                  <span>D: {team.losses}</span>
-                  <span>
-                    {team.wins + team.losses > 0
-                      ? `${(
-                          (team.wins / (team.wins + team.losses)) *
-                          100
-                        ).toFixed(0)}%`
-                      : "0%"}
-                  </span>
-                </div>
-              </div>
+                team={team}
+                onSelect={onSelectTeam1}
+                isSelected={selectedTeam1?.id === team.id}
+                isDisabled={selectedTeam2?.id === team.id}
+                selectedColor="bg-blue-600/30 border-blue-500"
+              />
             ))}
           </div>
         </div>
@@ -97,55 +61,17 @@ const TeamSelector = ({
           <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
             <span className="text-red-400">🔴</span>
             Equipo 2
-          </h2>
+          </h2>{" "}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {availableTeams.map((team) => (
-              <div
+              <TeamCard
                 key={team.id}
-                onClick={() => onSelectTeam2(team)}
-                className={`p-4 rounded-lg cursor-pointer transition-all duration-200 ${
-                  selectedTeam2?.id === team.id
-                    ? "bg-red-600/30 border-2 border-red-500"
-                    : selectedTeam1?.id === team.id
-                    ? "bg-slate-700/50 border border-slate-600 opacity-50 cursor-not-allowed"
-                    : "bg-slate-700/50 border border-slate-600 hover:bg-slate-700 hover:border-slate-500"
-                }`}
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-bold text-slate-100">{team.name}</h3>
-                  <span className="text-sm text-slate-400">
-                    {team.pokemon.length}/6
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-3 gap-2 mb-3">
-                  {team.pokemon.slice(0, 6).map((pokemon, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                      <img
-                        src={pokemon.image}
-                        alt={pokemon.name}
-                        className="w-8 h-8 object-contain mb-1"
-                      />
-                      <span className="text-xs text-slate-300 capitalize truncate w-full text-center">
-                        {pokemon.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex justify-between text-xs text-slate-400">
-                  <span>V: {team.wins}</span>
-                  <span>D: {team.losses}</span>
-                  <span>
-                    {team.wins + team.losses > 0
-                      ? `${(
-                          (team.wins / (team.wins + team.losses)) *
-                          100
-                        ).toFixed(0)}%`
-                      : "0%"}
-                  </span>
-                </div>
-              </div>
+                team={team}
+                onSelect={onSelectTeam2}
+                isSelected={selectedTeam2?.id === team.id}
+                isDisabled={selectedTeam1?.id === team.id}
+                selectedColor="bg-red-600/30 border-red-500"
+              />
             ))}
           </div>
         </div>
