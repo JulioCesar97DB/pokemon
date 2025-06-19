@@ -12,6 +12,7 @@
 [![Vite](https://img.shields.io/badge/Vite-6.3.5-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-4.1.10-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Zustand](https://img.shields.io/badge/Zustand-5.0.5-FF6B6B?style=for-the-badge)](https://github.com/pmndrs/zustand)
+[![Deployed](https://img.shields.io/badge/Deployed-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://pokemon-rosy-phi.vercel.app)
 
 ---
 
@@ -54,7 +55,7 @@ node --version    # ✅ v18.0.0 o superior
 npm --version     # ✅ v8.0.0 o superior
 ```
 
-### **⚡ Instalación Rápida**
+### **🚀 Instalación Rápida**
 
 <table>
 <tr>
@@ -62,7 +63,7 @@ npm --version     # ✅ v8.0.0 o superior
 
 **📥 1. Clonar Repositorio**
 ```bash
-git clone <repository-url>
+git clone https://github.com/JulioCesar97DB/pokemon.git
 cd pokemon
 ```
 
@@ -800,29 +801,15 @@ git commit -m
 
 ---
 
-## 📄 Licencia
-
-<div align="center">
-
-[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-
-**Este proyecto está bajo la Licencia MIT**
-
-*Ver el archivo `LICENSE` para más detalles*
-
-</div>
-
----
-
 ## 🔗 Enlaces Útiles
 
 <div align="center">
 
 ### **🌐 Recursos del Proyecto**
 
-[![Demo](https://img.shields.io/badge/🚀_Demo-Live_App-success?style=for-the-badge)](https://tu-demo-url.com)
-[![Docs](https://img.shields.io/badge/📚_Docs-Wiki-informational?style=for-the-badge)](https://github.com/tu-usuario/pokemon/wiki)
-[![Issues](https://img.shields.io/badge/🐛_Issues-Report_Bug-critical?style=for-the-badge)](https://github.com/tu-usuario/pokemon/issues)
+[![Demo](https://img.shields.io/badge/🚀_Demo-Live_App-success?style=for-the-badge)](https://pokemon-rosy-phi.vercel.app)
+[![GitHub](https://img.shields.io/badge/📚_GitHub-Repository-informational?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JulioCesar97DB/pokemon)
+[![Issues](https://img.shields.io/badge/🐛_Issues-Report_Bug-critical?style=for-the-badge)](https://github.com/JulioCesar97DB/pokemon/issues)
 [![PokéAPI](https://img.shields.io/badge/🌐_PokéAPI-Official_Docs-FF6B6B?style=for-the-badge)](https://pokeapi.co/docs/v2)
 
 </div>
@@ -843,6 +830,6 @@ git commit -m
 
 ---
 
-**© 2025 - Desarrollado con tecnologías modernas para la comunidad Pokémon**
+**© 2025 - Desarrollado por Julio Cesar Diaz con tecnologías modernas para la comunidad Pokémon**
 
 </div>
