@@ -7,6 +7,7 @@ import { TeamsLayout } from "../layouts/TeamsLayout";
 import { CombatPage } from "../pages/Combat/CombatPage";
 import { DraftsPage } from "../pages/Teams/DraftsPage";
 import { NewTeam } from "../pages/Teams/NewTeam";
+import { NotFound } from "../components/ui/NotFound";
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
                         Component: CombatPage
                     }
                 ]
+            },
+            {
+                path: "*",
+                Component: NotFound,
             },
         ]
     }
