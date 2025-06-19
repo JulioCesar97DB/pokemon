@@ -1,7 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
-  const { pathname } = useLocation();
+  const getLinkClasses = ({ isActive }) => 
+    `flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
+      isActive
+        ? "bg-blue-700 text-white"
+        : "hover:bg-blue-800 hover:text-blue-100"
+    }`;
 
   return (
     <nav className="absolute w-full bg-blue-900">
@@ -10,36 +15,25 @@ export const Navbar = () => {
           <img src="/pokemon.svg" alt="pokeball" /> Pokemon Combat
         </div>
         <div className="flex space-x-1 md:space-x-10">
-          <Link
+          <NavLink
             to="/"
-            className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
-              pathname === "/"
-                ? "bg-blue-700 text-white"
-                : "hover:bg-blue-800 hover:text-blue-100"
-            }`}
+            className={getLinkClasses}
+            end
           >
             Inicio
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/teams"
-            className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
-              pathname.includes("/teams")
-                ? "bg-blue-700 text-white"
-                : "hover:bg-blue-800 hover:text-blue-100"
-            }`}
+            className={getLinkClasses}
           >
             Equipos
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/combat"
-            className={`flex items-center px-6 py-2 rounded-xl transition-all duration-200 ${
-              pathname.includes("/combat")
-                ? "bg-blue-700 text-white"
-                : "hover:bg-blue-800 hover:text-blue-100"
-            }`}
+            className={getLinkClasses}
           >
             Combates
-          </Link>
+          </NavLink>
         </div>
       </div>
     </nav>
