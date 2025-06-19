@@ -39,9 +39,9 @@ const TeamsGrid = ({ teams, onDelete, onUpdatePokemonOrder }) => {
 
   if (teams.length === 0) {
     return (
-      <div className="p-6">
+      <div className="p-6 h-full flex flex-col">
         <h1 className="text-3xl font-bold text-slate-100 mb-8">Mis Equipos</h1>
-        <div className="text-center py-16">
+        <div className="flex flex-col items-center justify-center h-full text-center py-16">
           <div className="text-6xl mb-4">⚔️</div>
           <h3 className="text-xl font-semibold text-slate-200 mb-2">
             No tienes equipos creados

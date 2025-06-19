@@ -18,13 +18,15 @@ const DraftsGrid = ({ drafts, onDelete, onPromote }) => {
 
   const handlePromote = (draft) => {
     const confirmMessage = `¿Quieres promover el borrador "${draft.name}" a equipo? Esto lo moverá a tus equipos activos.`;
-    
+
     showConfirm(
       confirmMessage,
       () => {
         try {
           onPromote(draft.id);
-          showSuccess(`¡Borrador "${draft.name}" promovido a equipo exitosamente!`);
+          showSuccess(
+            `¡Borrador "${draft.name}" promovido a equipo exitosamente!`
+          );
         } catch (error) {
           console.error("Error al promover el borrador:", error);
           showError("Error al promover el borrador");
@@ -39,7 +41,7 @@ const DraftsGrid = ({ drafts, onDelete, onPromote }) => {
 
   const handleDelete = (draft) => {
     const confirmMessage = `¿Estás seguro de que quieres eliminar el borrador "${draft.name}"?`;
-    
+
     showConfirm(
       confirmMessage,
       () => {
@@ -60,9 +62,11 @@ const DraftsGrid = ({ drafts, onDelete, onPromote }) => {
 
   if (drafts.length === 0) {
     return (
-      <div className="p-6">
-        <h1 className="text-3xl font-bold text-slate-100 mb-8">Mis Borradores</h1>
-        <div className="text-center py-16">
+      <div className="p-6 h-full flex flex-col">
+        <h1 className="text-3xl font-bold text-slate-100 mb-8">
+          Mis Borradores
+        </h1>
+        <div className="flex flex-col items-center justify-center text-center h-full py-16">
           <div className="text-6xl mb-4">📝</div>
           <h3 className="text-xl font-semibold text-slate-200 mb-2">
             No tienes borradores guardados
