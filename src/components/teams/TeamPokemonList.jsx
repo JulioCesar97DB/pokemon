@@ -60,7 +60,8 @@ const SortablePokemonItem = ({ pokemon }) => {
         <div className="flex gap-1 flex-wrap mb-1">
           {pokemon.types.slice(0, 2).map((type, index) => (
             <PokemonTypeBadge key={index} type={type} size="small" />
-          ))}        </div>
+          ))}{" "}
+        </div>
         <div className="text-xs text-slate-400">
           Ataque: {pokemon.attack || "N/A"}
         </div>
@@ -148,11 +149,9 @@ const TeamPokemonList = ({ pokemon, onReorder }) => {
           items={pokemon.map((p) => p.id)}
           strategy={verticalListSortingStrategy}
         >
-          <div className="space-y-3">            {pokemon.map((poke) => (
-              <SortablePokemonItem
-                key={poke.id}
-                pokemon={poke}
-              />
+          <div className="space-y-3">
+            {pokemon.map((poke) => (
+              <SortablePokemonItem key={poke.id} pokemon={poke} />
             ))}
           </div>
         </SortableContext>
